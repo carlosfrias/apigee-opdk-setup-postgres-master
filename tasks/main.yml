@@ -1,5 +1,5 @@
 ---
-# tasks file for opdk-setup-postgres-master
+# tasks file for apigee-opdk-setup-postgres-master
 - name: Postgres replication master
   shell: '{{ apigee_service }} apigee-postgresql setup-replication-on-master -f {{ opdk_installation_config_file }}'
 
