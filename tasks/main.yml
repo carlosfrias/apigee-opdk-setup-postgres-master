@@ -7,6 +7,3 @@
   become: yes
   command: '{{ apigee_all }} wait_for_ready'
   when: validate_ready | default(true)
-
-- name: Validate postgres replication master
-  command: '{{ apigee_service }} apigee-postgresql postgres-check-master'
