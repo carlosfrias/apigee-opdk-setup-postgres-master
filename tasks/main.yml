@@ -3,5 +3,10 @@
 - name: Postgres replication master
   command: '{{ apigee_service }} apigee-postgresql setup-replication-on-master -f {{ opdk_installation_config_file }}'
 
+- name: Wait for ready with no proxy
+  become: yes
+  command: '{{ apigee_all }} wait_for_ready'
+  when: validate_ready | default(true)
+
 - name: Validate postgres replication master
   command: '{{ apigee_service }} apigee-postgresql postgres-check-master'
