@@ -22,6 +22,8 @@
       { key: 'conf_pg_hba_replication.connection', value: '{{ replication_string }}', file_name: 'postgresql' }
   when: groups['pgstandby'] | length > 1
 
+- pause:
+
 - name: Wait for ready with no proxy
   become: yes
   command: '{{ apigee_all }} wait_for_ready'
