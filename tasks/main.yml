@@ -19,7 +19,8 @@
     import_role:
       name: apigee-opdk-cwc-update
     vars:
-      { key: 'conf_pg_hba_replication.connection', value: '{{ replication_string }}', file_name: 'postgresql' }
+      cwc_properties:
+        - { key: 'conf_pg_hba_replication.connection', value: '{{ replication_string }}', file_name: 'postgresql' }
   when: groups['pgstandby'] | length > 1
 
 - pause:
