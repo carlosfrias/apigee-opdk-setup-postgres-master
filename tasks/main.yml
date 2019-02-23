@@ -10,7 +10,7 @@
 
   - name: Create Postgres Standby replication string
     set_fact:
-      replication_string: "{{ replication_string }}host     replication     apigee {{ hostvars[item]['private_address'] }}/32     trust\n"
+      replication_string: "{{ replication_string }}host     replication     apigee {{ hostvars[item]['private_address'] }}/32     trust\\n"
     with_items: "{{ groups['pgstandby'] }}"
 
   - name: Create Postgres Master property file for Multiple Postgres Standby
