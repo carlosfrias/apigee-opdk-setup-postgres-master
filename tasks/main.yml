@@ -3,10 +3,17 @@
 - name: Postgres replication master
   command: '/opt/apigee/apigee-service/bin/apigee-service apigee-postgresql setup-replication-on-master -f {{ target_response_file_path }}'
 
+- name: Setup Postgres Standby replication variable
+  set_fact:
+    replication_string: ''
+
+- name: Reset Postgres Master property file replication string to empty
+  import_role:
+    name: apigee-opdk-cwc-update
+  vars:
+    cwc_properties:
+      - { key: 'conf_pg_hba_replication.connection', value: '{{ replication_string }}', file_name: 'postgresql' }
 - block:
-  - name: Setup Postgres Standby replication variable
-    set_fact:
-      replication_string: ''
 
   - name: Create Postgres Standby replication string
     set_fact:
